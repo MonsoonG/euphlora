@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Euphlora Dispensary | Premium Cannabis Products</title>
+    <title>Euphlora Dispensary | Premium Cannabis in OKC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #5a8f2a;
-            --primary-dark: #3a5e1b;
-            --primary-light: #8bc34a;
-            --secondary: #2c0e37;
-            --accent: #ff9800;
-            --text: #333;
-            --light: #f5f5f5;
+            --green: #2e7d32;
+            --green-dark: #1b5e20;
+            --green-light: #4caf50;
+            --black: #121212;
+            --gray: #212121;
             --white: #ffffff;
-            --dark: #1a1a1a;
+            --accent: #ffab00;
         }
         
         * {
@@ -29,55 +27,46 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            color: var(--text);
+            color: var(--white);
             line-height: 1.6;
-            background-color: var(--light);
+            background-color: var(--black);
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
+        /* Modern Header */
         header {
-            background-color: var(--white);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            background-color: rgba(18, 18, 18, 0.95);
             position: fixed;
             width: 100%;
             z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transition: all 0.4s;
+            border-bottom: 1px solid rgba(46, 125, 50, 0.3);
         }
         
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 25px 0;
         }
         
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--green-light);
             text-decoration: none;
-            display: flex;
-            align-items: center;
+            letter-spacing: 1px;
         }
         
         .logo span {
-            color: var(--secondary);
-        }
-        
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 28px;
+            color: var(--white);
         }
         
         .nav-links {
@@ -86,14 +75,17 @@
         }
         
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 40px;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--white);
             font-weight: 600;
-            transition: color 0.3s;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
             position: relative;
         }
         
@@ -102,191 +94,155 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--green-light);
             bottom: -5px;
             left: 0;
             transition: width 0.3s;
         }
         
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--green-light);
         }
         
         .nav-links a:hover:after {
             width: 100%;
         }
         
+        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             height: 100vh;
+            min-height: 800px;
             display: flex;
             align-items: center;
-            color: var(--white);
-            text-align: center;
-            padding-top: 80px;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeIn 1.5s ease;
-        }
-        
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 64px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-        }
-        
-        .hero p {
-            font-size: 22px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 15px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: 2px solid var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
-        }
-        
-        .btn:hover {
-            background-color: transparent;
-            color: var(--white);
-            border-color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--white);
-            margin-left: 15px;
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-        
-        section {
-            padding: 100px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            margin-bottom: 60px;
-            color: var(--primary);
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: var(--primary-light);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-        
-        .about {
-            background-color: var(--white);
             position: relative;
             overflow: hidden;
         }
         
-        .about:before {
+        .hero:before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1516733968668-dbdce39c4651?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            opacity: 0.03;
-            z-index: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--black) 100%);
         }
         
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
+        .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
         }
         
-        .about-text {
-            flex: 1;
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 17px;
-            line-height: 1.8;
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            letter-spacing: 1px;
         }
         
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .btn {
+            display: inline-block;
+            background-color: var(--green);
+            color: var(--white);
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border: 2px solid var(--green);
+            margin: 0 10px;
         }
         
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s;
+        .btn:hover {
+            background-color: transparent;
+            color: var(--green-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
-        .about-image:hover img {
-            transform: scale(1.05);
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--green-light);
+            color: var(--green-light);
         }
         
+        .btn-outline:hover {
+            background-color: var(--green);
+            color: var(--white);
+        }
+        
+        /* Products Section */
         .products {
-            background-color: var(--light);
+            padding: 120px 0;
+            background-color: var(--black);
             position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 60px;
+            font-weight: 900;
+            margin-bottom: 80px;
+            color: var(--green-light);
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
         
         .product-card {
-            background-color: var(--white);
+            background-color: var(--gray);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
         
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
         }
         
         .product-image {
-            height: 250px;
+            height: 350px;
             overflow: hidden;
         }
         
@@ -302,73 +258,63 @@
         }
         
         .product-info {
-            padding: 25px;
+            padding: 30px;
             text-align: center;
         }
         
         .product-name {
             font-weight: 700;
             margin-bottom: 15px;
-            font-size: 20px;
-            color: var(--primary-dark);
+            font-size: 24px;
+            color: var(--white);
+            letter-spacing: 1px;
         }
         
         .product-price {
             color: var(--accent);
             font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            margin-bottom: 20px;
         }
         
         .product-btn {
             display: inline-block;
-            background-color: var(--primary);
+            background-color: var(--green);
             color: var(--white);
-            padding: 10px 25px;
-            border-radius: 30px;
+            padding: 12px 30px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
+            letter-spacing: 1px;
             transition: all 0.3s;
+            text-transform: uppercase;
         }
         
         .product-btn:hover {
-            background-color: var(--primary-dark);
+            background-color: var(--green-dark);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
+        /* Contact Section */
         .contact {
-            background-color: var(--secondary);
-            color: var(--white);
+            padding: 120px 0;
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1516733968668-dbdce39c4651?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             position: relative;
         }
         
-        .contact:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1516733968668-dbdce39c4651?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            opacity: 0.05;
-            z-index: 0;
-        }
-        
         .contact .section-title {
-            color: var(--white);
-        }
-        
-        .contact .section-title:after {
-            background: var(--accent);
+            color: var(--green-light);
         }
         
         .contact-container {
             display: flex;
-            gap: 50px;
-            position: relative;
-            z-index: 1;
+            gap: 60px;
+            align-items: center;
         }
         
         .contact-info {
@@ -377,49 +323,47 @@
         
         .info-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 30px;
         }
         
         .info-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-right: 20px;
-            color: var(--accent);
             font-size: 24px;
-            min-width: 30px;
         }
         
         .info-content h3 {
+            font-size: 24px;
             margin-bottom: 10px;
-            font-size: 20px;
+            color: var(--green-light);
         }
         
         .info-content p {
+            font-size: 18px;
             opacity: 0.9;
-            line-height: 1.8;
         }
         
-        .hours {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 40px;
-        }
-        
-        .hours h3 {
-            margin-bottom: 15px;
+        .phone-number {
+            font-size: 28px;
+            font-weight: 700;
             color: var(--accent);
-        }
-        
-        .hours p {
-            margin-bottom: 10px;
+            margin-top: 10px;
+            display: inline-block;
         }
         
         .map {
             flex: 1;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            height: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            height: 500px;
         }
         
         .map iframe {
@@ -428,26 +372,28 @@
             border: none;
         }
         
+        /* Footer */
         footer {
-            background-color: var(--dark);
-            color: var(--white);
+            background-color: var(--black);
+            padding: 60px 0 30px;
             text-align: center;
-            padding: 50px 0 30px;
+            border-top: 1px solid rgba(46, 125, 50, 0.3);
         }
         
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: var(--primary-light);
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            color: var(--green-light);
+            letter-spacing: 2px;
         }
         
         .footer-text {
-            margin-bottom: 30px;
-            opacity: 0.8;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 30px;
+            font-size: 16px;
+            opacity: 0.8;
         }
         
         .social-links {
@@ -455,47 +401,57 @@
         }
         
         .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            width: 50px;
+            height: 50px;
+            background-color: var(--gray);
             color: var(--white);
             border-radius: 50%;
-            line-height: 40px;
+            align-items: center;
+            justify-content: center;
             margin: 0 10px;
+            font-size: 20px;
             transition: all 0.3s;
         }
         
         .social-links a:hover {
-            background-color: var(--primary);
+            background-color: var(--green);
             transform: translateY(-5px);
         }
         
         .copyright {
             opacity: 0.6;
             font-size: 14px;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            margin-top: 30px;
         }
         
         /* Responsive */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .hero h1 {
-                font-size: 48px;
+                font-size: 60px;
             }
             
-            .about-content,
+            .section-title {
+                font-size: 48px;
+            }
+        }
+        
+        @media (max-width: 992px) {
             .contact-container {
                 flex-direction: column;
             }
             
-            .about-image,
             .map {
-                margin-top: 30px;
+                width: 100%;
+                margin-top: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .section-title {
+                font-size: 42px;
             }
         }
         
@@ -508,8 +464,10 @@
                 font-size: 18px;
             }
             
-            .section-title {
-                font-size: 36px;
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 250px;
             }
             
             .nav-links {
@@ -519,6 +477,22 @@
             .product-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .info-content h3 {
+                font-size: 20px;
+            }
+            
+            .info-content p {
+                font-size: 16px;
+            }
+            
+            .phone-number {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
@@ -526,12 +500,8 @@
     <header id="header">
         <div class="container">
             <nav>
-                <a href="#" class="logo">
-                    <i class="fas fa-cannabis logo-icon"></i>
-                    Euphlora <span>Dispensary</span>
-                </a>
+                <a href="#" class="logo">EUPHLORA <span>DISPENSARY</span></a>
                 <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#contact">Visit Us</a></li>
                 </ul>
@@ -540,37 +510,19 @@
     </header>
 
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Premium Cannabis Experience</h1>
-                <p>Discover the finest quality cannabis products for wellness and relaxation in a welcoming environment</p>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn">Our Products</a>
-                    <a href="#contact" class="btn btn-outline">Visit Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Euphlora Dispensary</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Euphlora Dispensary is your premier destination for high-quality cannabis products in a safe, welcoming environment. Our mission is to provide education and access to premium cannabis while promoting responsible consumption.</p>
-                    <p>Our knowledgeable staff will guide you through our carefully curated selection of flowers, edibles, concentrates, and more. We work directly with local growers who share our commitment to organic cultivation and sustainable practices.</p>
-                    <p>Whether you're a cannabis connoisseur or new to cannabis, we're here to help you find the perfect products for your needs. Visit us today and experience the Euphlora difference.</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1577032226845-4466b90851a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Euphlora Dispensary interior">
-                </div>
+        <div class="hero-content">
+            <h1>PREMIUM CANNABIS EXPERIENCE</h1>
+            <p>Oklahoma City's premier destination for high-quality cannabis products</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn">View Products</a>
+                <a href="#contact" class="btn btn-outline">Visit Us</a>
             </div>
         </div>
     </section>
 
     <section id="products" class="products">
         <div class="container">
-            <h2 class="section-title">Our Premium Products</h2>
+            <h2 class="section-title">OUR PRODUCTS</h2>
             <div class="product-grid">
                 <div class="product-card">
                     <div class="product-image">
@@ -578,9 +530,8 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Premium Flower</h3>
-                        <p>Hand-trimmed, lab-tested cannabis flowers in various strains for every preference and need.</p>
                         <div class="product-price">From $35/eighth</div>
-                        <a href="#contact" class="product-btn">Inquire</a>
+                        <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
                 <div class="product-card">
@@ -589,9 +540,8 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Vape Cartridges</h3>
-                        <p>High-quality, pure cannabis oil in convenient vape cartridges with various strain options.</p>
                         <div class="product-price">From $40/cartridge</div>
-                        <a href="#contact" class="product-btn">Inquire</a>
+                        <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
                 <div class="product-card">
@@ -600,9 +550,8 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Edibles</h3>
-                        <p>Delicious, precisely dosed cannabis-infused chocolates, gummies, baked goods and beverages.</p>
                         <div class="product-price">From $20/pack</div>
-                        <a href="#contact" class="product-btn">Inquire</a>
+                        <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
                 <div class="product-card">
@@ -611,9 +560,28 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Concentrates</h3>
-                        <p>High-potency extracts including shatter, wax, live resin, and rosin for experienced users.</p>
                         <div class="product-price">From $50/gram</div>
-                        <a href="#contact" class="product-btn">Inquire</a>
+                        <a href="#contact" class="product-btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1595231776518-7d27a1c13c5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pre-Rolls">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pre-Rolls</h3>
+                        <div class="product-price">From $10/pack</div>
+                        <a href="#contact" class="product-btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1595497850966-f7a1a1b1a9e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Topicals">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Topicals</h3>
+                        <div class="product-price">From $25/jar</div>
+                        <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -622,7 +590,7 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Visit Our Dispensary</h2>
+            <h2 class="section-title">VISIT US</h2>
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="info-item">
@@ -630,8 +598,19 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="info-content">
-                            <h3>Location</h3>
+                            <h3>LOCATION</h3>
                             <p>5701 S Western Ave<br>Oklahoma City, OK 73109</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>HOURS</h3>
+                            <p>Monday-Friday: 10AM - 12AM<br>
+                            Saturday: 10AM - 12AM<br>
+                            Sunday: 12PM - 12AM</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -639,15 +618,10 @@
                             <i class="fas fa-phone-alt"></i>
                         </div>
                         <div class="info-content">
-                            <h3>Contact</h3>
-                            <p>Phone: (405) 555-0199<br>Email: okc@euphloradispensary.com</p>
+                            <h3>CALL US</h3>
+                            <p>Available during business hours</p>
+                            <a href="tel:4055101091" class="phone-number">(405) 510-1091</a>
                         </div>
-                    </div>
-                    <div class="hours">
-                        <h3>Business Hours</h3>
-                        <p><strong>Monday-Friday:</strong> 10:00 AM - 8:00 PM</p>
-                        <p><strong>Saturday:</strong> 10:00 AM - 6:00 PM</p>
-                        <p><strong>Sunday:</strong> 12:00 PM - 6:00 PM</p>
                     </div>
                 </div>
                 <div class="map">
@@ -659,8 +633,8 @@
 
     <footer>
         <div class="container">
-            <div class="footer-logo">Euphlora Dispensary</div>
-            <p class="footer-text">Your trusted source for premium cannabis products in Oklahoma City. Must be 21+ to enter and purchase. Please consume responsibly.</p>
+            <div class="footer-logo">EUPHLORA DISPENSARY</div>
+            <p class="footer-text">Oklahoma City's premier destination for premium cannabis products. Must be 21+ to purchase.</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -676,9 +650,9 @@
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if (window.scrollY > 100) {
-                header.classList.add('scrolled');
+                header.style.background = "rgba(18, 18, 18, 0.98)";
             } else {
-                header.classList.remove('scrolled');
+                header.style.background = "rgba(18, 18, 18, 0.95)";
             }
         });
         
