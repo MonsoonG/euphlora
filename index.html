@@ -7,14 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #4a934a;
-            --primary-dark: #3a753a;
-            --secondary: #f8f1e5;
+            --primary: #5a8f2a;
+            --primary-dark: #3a5e1b;
+            --primary-light: #8bc34a;
+            --secondary: #2c0e37;
+            --accent: #ff9800;
             --text: #333;
-            --light: #f9f9f9;
+            --light: #f5f5f5;
             --white: #ffffff;
+            --dark: #1a1a1a;
         }
         
         * {
@@ -38,10 +42,16 @@
         
         header {
             background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
-            z-index: 100;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
         
         nav {
@@ -53,10 +63,21 @@
         
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 28px;
         }
         
         .nav-links {
@@ -70,17 +91,33 @@
         
         .nav-links a {
             text-decoration: none;
-            color: var(--text);
+            color: var(--dark);
             font-weight: 600;
             transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
         }
         
         .nav-links a:hover {
             color: var(--primary);
         }
         
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1595943954100-5a8fd1e6d8b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -94,79 +131,143 @@
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeIn 1.5s ease;
         }
         
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 48px;
+            font-size: 64px;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
         
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 22px;
+            margin-bottom: 40px;
+            opacity: 0.9;
         }
         
         .btn {
             display: inline-block;
             background-color: var(--primary);
             color: var(--white);
-            padding: 12px 30px;
+            padding: 15px 40px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
         }
         
         .btn:hover {
-            background-color: var(--primary-dark);
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
         }
         
         section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .section-title {
             text-align: center;
             font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin-bottom: 50px;
+            font-size: 42px;
+            margin-bottom: 60px;
             color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-light);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .about {
             background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516733968668-dbdce39c4651?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            opacity: 0.03;
+            z-index: 0;
         }
         
         .about-content {
             display: flex;
             align-items: center;
             gap: 50px;
+            position: relative;
+            z-index: 1;
         }
         
         .about-text {
             flex: 1;
         }
         
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+        
         .about-image {
             flex: 1;
             border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
         .about-image img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
         }
         
         .products {
-            background-color: var(--secondary);
+            background-color: var(--light);
+            position: relative;
         }
         
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
         
@@ -174,16 +275,18 @@
             background-color: var(--white);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
         }
         
         .product-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
         
         .product-image {
-            height: 200px;
+            height: 250px;
             overflow: hidden;
         }
         
@@ -191,82 +294,212 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
         }
         
         .product-info {
-            padding: 20px;
+            padding: 25px;
+            text-align: center;
         }
         
         .product-name {
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: var(--primary-dark);
+        }
+        
+        .product-price {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .product-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .product-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .contact {
-            background-color: var(--white);
+            background-color: var(--secondary);
+            color: var(--white);
+            position: relative;
+        }
+        
+        .contact:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516733968668-dbdce39c4651?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .contact .section-title {
+            color: var(--white);
+        }
+        
+        .contact .section-title:after {
+            background: var(--accent);
         }
         
         .contact-container {
             display: flex;
             gap: 50px;
+            position: relative;
+            z-index: 1;
         }
         
         .contact-info {
             flex: 1;
         }
         
-        .contact-form {
-            flex: 1;
-        }
-        
         .info-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         
         .info-icon {
-            margin-right: 15px;
-            color: var(--primary);
+            margin-right: 20px;
+            color: var(--accent);
+            font-size: 24px;
+            min-width: 30px;
         }
         
-        form input,
-        form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        form textarea {
-            height: 120px;
-        }
-        
-        footer {
-            background-color: var(--primary);
-            color: var(--white);
-            text-align: center;
-            padding: 30px 0;
-        }
-        
-        .footer-text {
-            margin-bottom: 20px;
-        }
-        
-        .social-links a {
-            color: var(--white);
-            margin: 0 10px;
+        .info-content h3 {
+            margin-bottom: 10px;
             font-size: 20px;
         }
         
-        @media (max-width: 768px) {
+        .info-content p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .hours {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        
+        .hours h3 {
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .hours p {
+            margin-bottom: 10px;
+        }
+        
+        .map {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            height: 450px;
+        }
+        
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+        }
+        
+        .footer-text {
+            margin-bottom: 30px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .social-links {
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            line-height: 40px;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
             .about-content,
             .contact-container {
                 flex-direction: column;
             }
             
+            .about-image,
+            .map {
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: 36px;
             }
@@ -274,38 +507,59 @@
             .hero p {
                 font-size: 18px;
             }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="container">
             <nav>
-                <a href="#" class="logo">Euphlora</a>
+                <a href="#" class="logo">
+                    <i class="fas fa-cannabis logo-icon"></i>
+                    Euphlora <span>Dispensary</span>
+                </a>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#products">Products</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact">Visit Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Premium Cannabis Products</h1>
-            <p>Experience the highest quality cannabis products curated for your wellness and enjoyment</p>
-            <a href="#products" class="btn">Explore Products</a>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Cannabis Experience</h1>
+                <p>Discover the finest quality cannabis products for wellness and relaxation in a welcoming environment</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn">Our Products</a>
+                    <a href="#contact" class="btn btn-outline">Visit Us</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Euphlora</h2>
+            <h2 class="section-title">About Euphlora Dispensary</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Euphlora Dispensary is dedicated to providing the finest cannabis products in a welcoming and professional environment. Our knowledgeable staff is here to guide you through our carefully curated selection to find the perfect products for your needs.</p>
-                    <p>We source our products from trusted local growers and manufacturers who share our commitment to quality, purity, and sustainability. Whether you're seeking relief, relaxation, or recreation, Euphlora has something for everyone.</p>
+                    <p>Euphlora Dispensary is your premier destination for high-quality cannabis products in a safe, welcoming environment. Our mission is to provide education and access to premium cannabis while promoting responsible consumption.</p>
+                    <p>Our knowledgeable staff will guide you through our carefully curated selection of flowers, edibles, concentrates, and more. We work directly with local growers who share our commitment to organic cultivation and sustainable practices.</p>
+                    <p>Whether you're a cannabis connoisseur or new to cannabis, we're here to help you find the perfect products for your needs. Visit us today and experience the Euphlora difference.</p>
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1577032226845-4466b90851a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Euphlora Dispensary interior">
@@ -316,42 +570,50 @@
 
     <section id="products" class="products">
         <div class="container">
-            <h2 class="section-title">Our Products</h2>
+            <h2 class="section-title">Our Premium Products</h2>
             <div class="product-grid">
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1593081891731-fda0877988da?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Premium Flower">
+                        <img src="https://images.unsplash.com/photo-1600353068440-6369ef1980d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Premium Flower">
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Premium Flower</h3>
-                        <p>Hand-trimmed, lab-tested cannabis flowers in various strains for every preference.</p>
+                        <p>Hand-trimmed, lab-tested cannabis flowers in various strains for every preference and need.</p>
+                        <div class="product-price">From $35/eighth</div>
+                        <a href="#contact" class="product-btn">Inquire</a>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1595231776518-7d27a1c13c5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Vape Cartridges">
+                        <img src="https://images.unsplash.com/photo-1606313564200-75b2b2a648f7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vape Cartridges">
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Vape Cartridges</h3>
-                        <p>High-quality, pure cannabis oil in convenient vape cartridges.</p>
+                        <p>High-quality, pure cannabis oil in convenient vape cartridges with various strain options.</p>
+                        <div class="product-price">From $40/cartridge</div>
+                        <a href="#contact" class="product-btn">Inquire</a>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1575495856432-1e29e04a718d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Edibles">
+                        <img src="https://images.unsplash.com/photo-1606312619300-0a2aee672bcd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Edibles">
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Edibles</h3>
-                        <p>Delicious, precisely dosed cannabis-infused treats and beverages.</p>
+                        <p>Delicious, precisely dosed cannabis-infused chocolates, gummies, baked goods and beverages.</p>
+                        <div class="product-price">From $20/pack</div>
+                        <a href="#contact" class="product-btn">Inquire</a>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Concentrates">
+                        <img src="https://images.unsplash.com/photo-1606312619470-0d6821d505e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Concentrates">
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Concentrates</h3>
-                        <p>High-potency extracts including shatter, wax, and live resin.</p>
+                        <p>High-potency extracts including shatter, wax, live resin, and rosin for experienced users.</p>
+                        <div class="product-price">From $50/gram</div>
+                        <a href="#contact" class="product-btn">Inquire</a>
                     </div>
                 </div>
             </div>
@@ -360,39 +622,36 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Visit Us</h2>
+            <h2 class="section-title">Visit Our Dispensary</h2>
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="info-item">
-                        <div class="info-icon">📍</div>
-                        <div>
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
                             <h3>Location</h3>
-                            <p>123 Green Street<br>Your City, State 12345</p>
+                            <p>5701 S Western Ave<br>Oklahoma City, OK 73109</p>
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">🕒</div>
-                        <div>
-                            <h3>Hours</h3>
-                            <p>Monday-Friday: 10am-8pm<br>Saturday-Sunday: 10am-6pm</p>
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
                         </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">📞</div>
-                        <div>
+                        <div class="info-content">
                             <h3>Contact</h3>
-                            <p>Phone: (123) 456-7890<br>Email: info@euphlora.com</p>
+                            <p>Phone: (405) 555-0199<br>Email: okc@euphloradispensary.com</p>
                         </div>
+                    </div>
+                    <div class="hours">
+                        <h3>Business Hours</h3>
+                        <p><strong>Monday-Friday:</strong> 10:00 AM - 8:00 PM</p>
+                        <p><strong>Saturday:</strong> 10:00 AM - 6:00 PM</p>
+                        <p><strong>Sunday:</strong> 12:00 PM - 6:00 PM</p>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Your Phone">
-                        <textarea placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3247.747974658291!2d-97.5473889241336!3d35.4670723725938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b2173f6d3a3085%3A0x9e1b9c0a0a1a1a1a!2s5701%20S%20Western%20Ave%2C%20Oklahoma%20City%2C%20OK%2073109!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -400,14 +659,39 @@
 
     <footer>
         <div class="container">
-            <p class="footer-text">© 2023 Euphlora Dispensary. All rights reserved. For adults 21+ only.</p>
+            <div class="footer-logo">Euphlora Dispensary</div>
+            <p class="footer-text">Your trusted source for premium cannabis products in Oklahoma City. Must be 21+ to enter and purchase. Please consume responsibly.</p>
             <div class="social-links">
-                <a href="#">📱</a>
-                <a href="#">📘</a>
-                <a href="#">📸</a>
-                <a href="#">🐦</a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
             </div>
+            <p class="copyright">© 2023 Euphlora Dispensary. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
