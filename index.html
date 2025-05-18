@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Euflora Dispensary | Premium Cannabis in OKC</title>
+    <title>Euphlora Dispensary | Premium Cannabis in OKC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -516,6 +516,77 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
+        /* Sidebar Popup */
+        .sidebar-popup {
+            position: fixed;
+            right: -350px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 350px;
+            background: linear-gradient(135deg, var(--green-dark), var(--green));
+            padding: 25px;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -5px 5px 20px rgba(0,0,0,0.3);
+            z-index: 2000;
+            transition: all 0.5s ease;
+            border: 2px solid var(--accent);
+            border-right: none;
+        }
+        
+        .sidebar-popup.active {
+            right: 0;
+        }
+        
+        .sidebar-popup h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+        
+        .sidebar-popup p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .sidebar-btn {
+            background-color: var(--accent);
+            color: var(--black);
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .sidebar-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .close-sidebar {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-sidebar:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+        
         /* Responsive */
         @media (max-width: 1200px) {
             .hero h1 {
@@ -596,6 +667,27 @@
             .popup-content p {
                 font-size: 16px;
             }
+            
+            .sidebar-popup {
+                width: 280px;
+                right: -280px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar-popup {
+                width: 250px;
+                right: -250px;
+                padding: 20px 15px;
+            }
+            
+            .sidebar-popup h3 {
+                font-size: 20px;
+            }
+            
+            .sidebar-popup p {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -603,7 +695,7 @@
     <header id="header">
         <div class="container">
             <nav>
-                <a href="#" class="logo">EUFLORA <span>DISPENSARY</span></a>
+                <a href="#" class="logo">EUPHLORA <span>DISPENSARY</span></a>
                 <ul class="nav-links">
                     <li><a href="#products">Products</a></li>
                     <li><a href="#contact">Visit Us</a></li>
@@ -739,7 +831,7 @@
 
     <footer>
         <div class="container">
-            <div class="footer-logo">EUPHLORA DISPENSARY</div>
+            <div class="footer-logo">EUFLORA DISPENSARY</div>
             <p class="footer-text">Oklahoma City's premier destination for premium cannabis products. Must be 21+ to purchase.</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -747,11 +839,11 @@
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-google"></i></a>
             </div>
-            <p class="copyright">© 2025 Euphlora Dispensary. All rights reserved.</p>
+            <p class="copyright">© 2025 Euflora Dispensary. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Popup -->
+    <!-- Main Popup -->
     <div class="popup-overlay" id="popup">
         <div class="popup-content">
             <button class="close-popup" id="close-popup">&times;</button>
@@ -759,6 +851,14 @@
             <p>Get <strong>$10 OFF</strong> your first purchase when you mention this offer at checkout!</p>
             <button class="popup-btn" id="claim-offer">CLAIM YOUR DISCOUNT</button>
         </div>
+    </div>
+
+    <!-- Sidebar Popup -->
+    <div class="sidebar-popup" id="sidebar-popup">
+        <button class="close-sidebar" id="close-sidebar">&times;</button>
+        <h3>SPECIAL OFFER!</h3>
+        <p>Get $10 OFF your first purchase!</p>
+        <button class="sidebar-btn" id="sidebar-claim">CLAIM NOW</button>
     </div>
 
     <script>
@@ -785,32 +885,52 @@
 
         // Popup functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if this is the user's first visit
-            if (!localStorage.getItem('popupShown')) {
-                // Show popup after 3 seconds
-                setTimeout(function() {
-                    document.getElementById('popup').classList.add('active');
-                    localStorage.setItem('popupShown', 'true');
-                }, 3000);
-            }
+            // Show main popup after 1 second
+            setTimeout(function() {
+                document.getElementById('popup').classList.add('active');
+            }, 1000);
 
-            // Close popup when X is clicked
+            // Close main popup when X is clicked
             document.getElementById('close-popup').addEventListener('click', function() {
                 document.getElementById('popup').classList.remove('active');
+                // Show sidebar popup after 10 seconds
+                setTimeout(showSidebarPopup, 10000);
             });
 
-            // Close popup when claim button is clicked
+            // Close main popup when claim button is clicked
             document.getElementById('claim-offer').addEventListener('click', function() {
                 document.getElementById('popup').classList.remove('active');
                 alert("Thank you! Please mention this offer at checkout to receive your $10 discount.");
+                // Show sidebar popup after 10 seconds
+                setTimeout(showSidebarPopup, 10000);
             });
 
-            // Close popup when clicking outside
+            // Close main popup when clicking outside
             document.getElementById('popup').addEventListener('click', function(e) {
                 if (e.target === this) {
                     this.classList.remove('active');
+                    // Show sidebar popup after 10 seconds
+                    setTimeout(showSidebarPopup, 10000);
                 }
             });
+
+            // Close sidebar popup
+            document.getElementById('close-sidebar').addEventListener('click', function() {
+                document.getElementById('sidebar-popup').classList.remove('active');
+                // Show sidebar popup again after 30 seconds
+                setTimeout(showSidebarPopup, 30000);
+            });
+
+            // Sidebar claim button
+            document.getElementById('sidebar-claim').addEventListener('click', function() {
+                document.getElementById('sidebar-popup').classList.remove('active');
+                alert("Thank you! Please mention this offer at checkout to receive your $10 discount.");
+            });
+
+            // Function to show sidebar popup
+            function showSidebarPopup() {
+                document.getElementById('sidebar-popup').classList.add('active');
+            }
         });
     </script>
 </body>
