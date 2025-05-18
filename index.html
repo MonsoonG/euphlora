@@ -8,96 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    /* Popup Styles */
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.popup-content {
-    background: linear-gradient(135deg, var(--green-dark), var(--green));
-    padding: 40px;
-    border-radius: 15px;
-    text-align: center;
-    position: relative;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    animation: shimmer 2s infinite;
-    border: 2px solid var(--accent);
-}
-
-@keyframes shimmer {
-    0% { box-shadow: 0 0 15px rgba(255, 171, 0, 0.5); }
-    50% { box-shadow: 0 0 30px rgba(255, 171, 0, 0.8); }
-    100% { box-shadow: 0 0 15px rgba(255, 171, 0, 0.5); }
-}
-
-.popup-content h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: var(--white);
-}
-
-.popup-content p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    color: var(--white);
-}
-
-.close-popup {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.close-popup:hover {
-    color: var(--accent);
-    transform: rotate(90deg);
-}
-
-.popup-btn {
-    background-color: var(--accent);
-    color: var(--black);
-    padding: 12px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 16px;
-    display: inline-block;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-}
-
-.popup-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
     <style>
         :root {
             --green: #2e7d32;
@@ -114,15 +24,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        <!-- Popup -->
-<div class="popup-overlay" id="popup">
-    <div class="popup-content">
-        <button class="close-popup" id="close-popup">&times;</button>
-        <h3>FIRST TIME CUSTOMER?</h3>
-        <p>Get <strong>$10 OFF</strong> your first purchase when you mention this offer at checkout!</p>
-        <button class="popup-btn" id="claim-offer">CLAIM YOUR DISCOUNT</button>
-    </div>
-</div>
+        
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--white);
@@ -523,6 +425,97 @@
             margin-top: 30px;
         }
         
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: linear-gradient(135deg, var(--green-dark), var(--green));
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: shimmer 2s infinite;
+            border: 2px solid var(--accent);
+        }
+        
+        @keyframes shimmer {
+            0% { box-shadow: 0 0 15px rgba(255, 171, 0, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 171, 0, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(255, 171, 0, 0.5); }
+        }
+        
+        .popup-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .popup-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: var(--white);
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-popup:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+        
+        .popup-btn {
+            background-color: var(--accent);
+            color: var(--black);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .popup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
         /* Responsive */
         @media (max-width: 1200px) {
             .hero h1 {
@@ -591,6 +584,18 @@
             .phone-number {
                 font-size: 22px;
             }
+            
+            .popup-content {
+                padding: 30px 20px;
+            }
+            
+            .popup-content h3 {
+                font-size: 26px;
+            }
+            
+            .popup-content p {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -624,17 +629,16 @@
             <div class="product-grid">
                 <div class="product-card">
                     <div class="product-image">
-                        <img src=" https://altmed.com.au/wp-content/uploads/elementor/thumbs/image3-3-204wtposldaqbcgfyofmqd4zml0rxz1hobq8xv0ojaso.jpg" alt="Premium Flower">
+                        <img src="https://altmed.com.au/wp-content/uploads/elementor/thumbs/image3-3-204wtposldaqbcgfyofmqd4zml0rxz1hobq8xv0ojaso.jpg" alt="Premium Flower">
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Premium Flower</h3>
-            
                         <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src=" https://www.finefettle.com/assets/images/sLLhqi8Due-6000.jpeg" alt="Vape Cartridges">
+                        <img src="https://www.finefettle.com/assets/images/sLLhqi8Due-6000.jpeg" alt="Vape Cartridges">
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Vape Cartridges</h3>
@@ -643,11 +647,10 @@
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src=" https://web.musc.edu/-/sm/news-center-media/news-center-images/2023-images/01/cannabis-edibles-sized.jpg?h=666&w=1000&la=en&hash=329BDEB2FB9873492C3A6567009A427E" alt="Edibles">
+                        <img src="https://web.musc.edu/-/sm/news-center-media/news-center-images/2023-images/01/cannabis-edibles-sized.jpg?h=666&w=1000&la=en&hash=329BDEB2FB9873492C3A6567009A427E" alt="Edibles">
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Edibles</h3>
-                        
                         <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
@@ -657,7 +660,6 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Concentrates</h3>
-                        
                         <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
@@ -667,7 +669,6 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Pre-Rolls</h3>
-                      
                         <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
@@ -686,7 +687,6 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Tropicals</h3>
-                       
                         <a href="#contact" class="product-btn">Learn More</a>
                     </div>
                 </div>
@@ -750,35 +750,17 @@
             <p class="copyright">© 2025 Euphlora Dispensary. All rights reserved.</p>
         </div>
     </footer>
-// Popup functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if this is the user's first visit
-    if (!localStorage.getItem('popupShown')) {
-        // Show popup after 3 seconds
-        setTimeout(function() {
-            document.getElementById('popup').classList.add('active');
-            localStorage.setItem('popupShown', 'true');
-        }, 3000);
-    }
 
-    // Close popup when X is clicked
-    document.getElementById('close-popup').addEventListener('click', function() {
-        document.getElementById('popup').classList.remove('active');
-    });
+    <!-- Popup -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <button class="close-popup" id="close-popup">&times;</button>
+            <h3>FIRST TIME CUSTOMER?</h3>
+            <p>Get <strong>$10 OFF</strong> your first purchase when you mention this offer at checkout!</p>
+            <button class="popup-btn" id="claim-offer">CLAIM YOUR DISCOUNT</button>
+        </div>
+    </div>
 
-    // Close popup when claim button is clicked
-    document.getElementById('claim-offer').addEventListener('click', function() {
-        document.getElementById('popup').classList.remove('active');
-        alert("Thank you! Please mention this offer at checkout to receive your $10 discount.");
-    });
-
-    // Close popup when clicking outside
-    document.getElementById('popup').addEventListener('click', function(e) {
-        if (e.target === this) {
-            this.classList.remove('active');
-        }
-    });
-});
     <script>
         // Header scroll effect
         window.addEventListener('scroll', function() {
@@ -798,6 +780,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+            });
+        });
+
+        // Popup functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if this is the user's first visit
+            if (!localStorage.getItem('popupShown')) {
+                // Show popup after 3 seconds
+                setTimeout(function() {
+                    document.getElementById('popup').classList.add('active');
+                    localStorage.setItem('popupShown', 'true');
+                }, 3000);
+            }
+
+            // Close popup when X is clicked
+            document.getElementById('close-popup').addEventListener('click', function() {
+                document.getElementById('popup').classList.remove('active');
+            });
+
+            // Close popup when claim button is clicked
+            document.getElementById('claim-offer').addEventListener('click', function() {
+                document.getElementById('popup').classList.remove('active');
+                alert("Thank you! Please mention this offer at checkout to receive your $10 discount.");
+            });
+
+            // Close popup when clicking outside
+            document.getElementById('popup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
             });
         });
     </script>
