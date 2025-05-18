@@ -855,7 +855,7 @@
     <div class="sidebar-popup" id="sidebar-popup">
         <button class="close-sidebar" id="close-sidebar">&times;</button>
         <h3>SPECIAL OFFER!</h3>
-        <p>Get $10 OFF your first purchase!</p>
+        <p>Get $10 OFF on your first purchase!</p>
         <button class="sidebar-btn" id="sidebar-claim">CLAIM NOW</button>
     </div>
 
@@ -898,7 +898,7 @@
             // Close main popup when claim button is clicked
             document.getElementById('claim-offer').addEventListener('click', function() {
                 document.getElementById('popup').classList.remove('active');
-                alert("Congratulations! You have secured $10. Rush to the store to claim your offer, the offer expires in 3 days.");
+                alert("Congratulations!🎉 You have secured $10. Rush to the store to claim your offer, the offer expires in 3 days.");
                 // Show sidebar popup after 10 seconds
                 setTimeout(showSidebarPopup, 10000);
             });
@@ -922,7 +922,7 @@
             // Sidebar claim button
             document.getElementById('sidebar-claim').addEventListener('click', function() {
                 document.getElementById('sidebar-popup').classList.remove('active');
-                alert("Thank you! Please mention this offer at checkout to receive your $10 discount.");
+                alert("Congratulations!🎉 You have secured $10. Rush to the store to claim your offer, the offer expires in 3 days.");
             });
 
             // Function to show sidebar popup
